@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: reactbot
-        image: csbull55/reactbot:main-6997f657d855c254b9744ba97e8451eb50e7f0bb
+        image: csbull55/reactbot:main-5bdc59e3965ad82a2b52a18177232399999d75ef
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
