@@ -31,12 +31,9 @@ func main() {
 	}
 
 	// Create and register handlers
-	hh := handlers.NewHello(l)
 	sh := handlers.NewSlack(l, os.Getenv("SLACKAPIKEY"))
 
 	http.Handle("/slack", sh)
-	http.Handle("/rat", hh)
-	http.Handle("/", hh)
 
 	l.Printf("Starting server on port %s", port)
 	l.Fatal(http.ListenAndServe(bindAddr, nil))
