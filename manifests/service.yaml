@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reactbot-svc
+  labels:
+    slack-app: reactbot-svc
+
+spec:
+  ports:
+  - port: 5000
+    targetPort: 5000  # temp for testing, change to image port
+    name: http
+    protocol: TCP
+  selector:
+    slack-app: reactbot-svc
+  sessionAffinity: None
+  type: ClusterIP

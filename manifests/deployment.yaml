@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactbot
+  labels:
+    slack-app: reactbot-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      slack-app: reactbot-svc
+  template:
+    metadata:
+      labels:
+        slack-app: reactbot-svc
+    spec:
+      containers:
+      - name: reactbot
+        image: csbull55/reactbot:main-6997f657d855c254b9744ba97e8451eb50e7f0bb
+        imagePullPolicy: Always
+        envFrom:
+          - configMapRef:
+              name: reactbot-cm

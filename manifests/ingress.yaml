@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: reactbot
+  labels:
+    slack-app: reactbot-svc
+  annotations:
+    acme.cert-manager.io/http01-ingress-class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: slack.cbull.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: reactbot-svc
+                port:
+                  number: 5000
+  tls:
+  - hosts:
+    - slack.cbull.dev
+    secretName: reactbot-acme-certificate
